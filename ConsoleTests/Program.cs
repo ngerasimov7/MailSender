@@ -23,7 +23,7 @@ namespace ConsoleTests
             client.Credentials = new NetworkCredential
             {
                 UserName = "nikola20",
-                Password = "Celebrate1509"
+                Password = "********"
             };
 
             client.Send(message);
@@ -32,4 +32,4 @@ namespace ConsoleTests
 
         }
     }
-}
+}   
