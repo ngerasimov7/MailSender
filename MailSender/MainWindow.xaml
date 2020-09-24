@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailSender"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="WpfMailSender" Height="450" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Height="25">
+            <MenuItem>Файл</MenuItem>
+        </Menu>
+        <TextBox Margin="5" DockPanel.Dock="Left"  x:Name="massageBody" Width="600" Text="Текст сообщения"></TextBox>
+        <StackPanel DockPanel.Dock="Right">
+            <TextBox Margin="5" Height="25" x:Name="adressTo" Text="Адрес получателя"></TextBox>
+            <TextBox Margin="5" Height="25" x:Name="adressFrom" Text="Адрес получателя"></TextBox>
+            <TextBox Margin="5" Height="25" x:Name="Subject"  Text="Тема письма"></TextBox>
+
+            <Label Margin="5,5,5,0">Параметры сервера</Label>
+            <TextBox Margin="5" Height="25" x:Name="smtpServer"  Text="Сервер"></TextBox>
+            <TextBox Margin="5" Height="25" x:Name="smtpPort"  Text="Порт"></TextBox>
+            <TextBox Margin="5" Height="25" x:Name="login"  Text="Логин"></TextBox>
+            <TextBox Height="25" Margin="5,0,5,5" Name="pass" Text="Пароль"></TextBox>
+            <PasswordBox Height="25" Margin="5,0,5,5" Name="passBx" ></PasswordBox>
+            <Button Margin="5" Height="30" Click="Button_Click">Отправить</Button>
+        </StackPanel>
         
-    </Grid>
+        
+        
+    </DockPanel>
 </Window>

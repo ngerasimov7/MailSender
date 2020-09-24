@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Net;
+using System.Net.Mail;
+using System.Windows.Interop;
 
 namespace MailSender
 {
@@ -20,9 +11,43 @@ namespace MailSender
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Config cfg = new Config();
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MailAddress to = new MailAddress(adressTo.Text);
+                MailAddress from = new MailAddress(adressFrom.Text);
+
+                MailMessage message = new MailMessage(from, to);
+
+                message.Subject = Subject.Text;
+                message.Body = massageBody.Text;
+
+                SmtpClient client = new SmtpClient(smtpServer.Text, int.Parse(smtpPort.Text));
+                client.EnableSsl = true;
+
+                client.Credentials = new NetworkCredential
+                {
+                    UserName= login.Text,
+                    Password = pass.Text
+                    //Password = passBx.SecurePassword
+                };
+            
+                client.Send(message);
+                MessageBox.Show("ОК");
+            }
+            catch
+            {
+                MessageBox.Show("Опаньки! Что-то пошло не так!");
+            }
+            
         }
     }
 }
