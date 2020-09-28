@@ -82,7 +82,7 @@ namespace MailSender.Data
         .Select(i => new Message
         {
             Id = i,
-            Tittle = $"Сообщение {i}",
+            Subject = $"Сообщение {i}",
             Body = $"Текст сообщения {i}"
         })
         .ToList();

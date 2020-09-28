@@ -150,11 +150,11 @@
                     <GroupBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Header="Письма">
                         <ListBox Name="MessagesList" 
                                  ItemsSource="{x:Static data:TestData.Messages}" 
-                                 DisplayMemberPath="Tittle" 
+                                 DisplayMemberPath="Subject" 
                                  SelectedIndex="0"/>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Grid.Row="0" Header="Заголовок">
-                        <TextBox Text="{Binding SelectedItem.Tittle, ElementName=MessagesList}"/>
+                        <TextBox Text="{Binding SelectedItem.Subject, ElementName=MessagesList}"/>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Grid.Row="1" Header="Тело письма">
                         <TextBox AcceptsReturn="True" AcceptsTab="True" 
