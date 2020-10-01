@@ -43,7 +43,5 @@ namespace MailSender
                 MessageBox.Show("Ошибка при отправке почты" + error.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-
     }
 }
