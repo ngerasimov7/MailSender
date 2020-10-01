@@ -17,7 +17,7 @@ namespace MailSender.ViewModels
         public StatisticViewModel Statistic { get; } = new StatisticViewModel();
 
 
-        private string _Title = "Тестовое окно";
+        private string _Title = "Рассыльщик почты";
 
         public string Title
         {
@@ -87,7 +87,7 @@ namespace MailSender.ViewModels
         }
 
         #region Команды
-
+        #region Команды сервера
         #region CreateNewServerCommand
 
         private ICommand _CreateNewServerCommand;
@@ -141,10 +141,127 @@ namespace MailSender.ViewModels
 
             Servers.Remove(server);
             SelectedServer = Servers.FirstOrDefault();
-
-            //MessageBox.Show($"Удаление сервера {server.Address}!", "Управление серверами");
         }
 
+        #endregion
+        #endregion
+
+        #region Команды Отправителей
+        #region CreateNewSenderCommand
+
+        private ICommand _CreateNewSenderCommand;
+
+        public ICommand CreateNewSenderCommand => _CreateNewSenderCommand
+            ??= new LambdaCommand(OnCreateNewSenderCommandExecuted, CanCreateNewSenderCommandExecute);
+
+        private bool CanCreateNewSenderCommandExecute(object p) => true;
+
+        private void OnCreateNewSenderCommandExecuted(object p)
+        {
+            // Основное действие, выполняемое командой, описывается здесь!!!
+
+            MessageBox.Show("Создание нового Отправителя!", "Управление Отправителями");
+        }
+
+        #endregion
+
+        #region EditSenderCommand
+
+        private ICommand _EditSenderCommand;
+
+        public ICommand EditSenderCommand => _EditSenderCommand
+            ??= new LambdaCommand(OnEditSenderCommandExecuted, CanEditSenderCommandExecute);
+
+        private bool CanEditSenderCommandExecute(object p) => p is Sender || SelectedSender != null;
+
+        private void OnEditSenderCommandExecuted(object p)
+        {
+            var sender = p as Sender ?? SelectedSender;
+            if (sender is null) return;
+
+            MessageBox.Show($"Редактирование Отправителя {sender.Name}!", "Управление Отправителями");
+        }
+
+        #endregion
+
+        #region DeleteSenderCommand
+
+        private ICommand _DeleteSenderCommand;
+
+        public ICommand DeleteSenderCommand => _DeleteSenderCommand
+            ??= new LambdaCommand(OnDeleteSenderCommandExecuted, CanDeleteSenderCommandExecute);
+
+        private bool CanDeleteSenderCommandExecute(object p) => p is Sender || SelectedSender != null;
+
+        private void OnDeleteSenderCommandExecuted(object p)
+        {
+            var sender = p as Sender ?? SelectedSender;
+            if (sender is null) return;
+
+            Senders.Remove(sender);
+            SelectedSender = Senders.FirstOrDefault();
+        }
+
+        #endregion
+        #endregion
+
+        #region Команды Получателей
+        #region CreateNewRecipientCommand
+
+        private ICommand _CreateNewRecipientCommand;
+
+        public ICommand CreateNewRecipientCommand => _CreateNewRecipientCommand
+            ??= new LambdaCommand(OnCreateNewRecipientCommandExecuted, CanCreateNewRecipientCommandExecute);
+
+        private bool CanCreateNewRecipientCommandExecute(object p) => true;
+
+        private void OnCreateNewRecipientCommandExecuted(object p)
+        {
+            // Основное действие, выполняемое командой, описывается здесь!!!
+
+            MessageBox.Show("Создание нового Получателя!", "Управление Получателями");
+        }
+
+        #endregion
+
+        #region EditRecipientCommand
+
+        private ICommand _EditRecipientCommand;
+
+        public ICommand EditRecipientCommand => _EditRecipientCommand
+            ??= new LambdaCommand(OnEditRecipientCommandExecuted, CanEditRecipientCommandExecute);
+
+        private bool CanEditRecipientCommandExecute(object p) => p is Recipient || SelectedRecipient != null;
+
+        private void OnEditRecipientCommandExecuted(object p)
+        {
+            var recipient = p as Recipient ?? SelectedRecipient;
+            if (recipient is null) return;
+
+            MessageBox.Show($"Редактирование Получателя {recipient.Name}!", "Управление Получателями");
+        }
+
+        #endregion
+
+        #region DeleteRecipientCommand
+
+        private ICommand _DeleteRecipientCommand;
+
+        public ICommand DeleteRecipientCommand => _DeleteRecipientCommand
+            ??= new LambdaCommand(OnDeleteRecipientCommandExecuted, CanDeleteRecipientCommandExecute);
+
+        private bool CanDeleteRecipientCommandExecute(object p) => p is Recipient || SelectedRecipient != null;
+
+        private void OnDeleteRecipientCommandExecuted(object p)
+        {
+            var recipient = p as Recipient ?? SelectedRecipient;
+            if (recipient is null) return;
+
+            Recipients.Remove(recipient);
+            SelectedRecipient = Recipients.FirstOrDefault();
+        }
+
+        #endregion
         #endregion
 
         #region Command SendMailCommand - Отправка почты

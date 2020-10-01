@@ -73,27 +73,29 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <Button ToolTip="Добавить">
+                            <Button ToolTip="Добавить" Command="{Binding CreateNewSenderCommand}">
                                 <fa:ImageAwesome Icon="Solid_PlusCircle" Height="12" Foreground="DarkBlue"/>
                             </Button>
-                            <Button fa:Awesome.Content="Solid_Edit" Foreground="OrangeRed" 
-                                    ToolTip="Редактировать"/>
-                            <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"
-                                    ToolTip="Удалить"/>
+                            <Button ToolTip="Редактировать" Command="{Binding EditSenderCommand}">
+                                <fa:ImageAwesome Icon="Solid_Edit" Height="12" Foreground="OrangeRed"/>
+                            </Button>
+                            <Button ToolTip="Удалить" Command="{Binding DeleteSenderCommand}">
+                                <fa:ImageAwesome Icon="Regular_TrashAlt" Height="12" Foreground="Red"/>
+                            </Button>
                         </ToolBar>
                         <ToolBar Header="Перейти в планировщик" Band="0">
                             <Button fa:Awesome.Content="Regular_Clock" Foreground="DarkBlue"/>
                         </ToolBar>
                         <ToolBar Header="Получатели" Band="1">
-                            <Button ToolTip="Добавить">
-                                <StackPanel Orientation="Horizontal">
-                                    <fa:ImageAwesome Icon="Solid_PlusCircle" Height="12" Foreground="DarkBlue"/>
-                                </StackPanel>
+                            <Button ToolTip="Добавить" Command="{Binding CreateNewRecipientCommand}">
+                                <fa:ImageAwesome Icon="Solid_PlusCircle" Height="12" Foreground="DarkBlue"/>
                             </Button>
-                            <Button fa:Awesome.Content="Solid_Edit" Foreground="OrangeRed" 
-                                    ToolTip="Редактировать"/>
-                            <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"
-                                    ToolTip="Удалить"/>
+                            <Button ToolTip="Редактировать" Command="{Binding EditRecipientCommand}">
+                                <fa:ImageAwesome Icon="Solid_Edit" Height="12" Foreground="OrangeRed"/>
+                            </Button>
+                            <Button ToolTip="Удалить" Command="{Binding DeleteRecipientCommand}">
+                                <fa:ImageAwesome Icon="Regular_TrashAlt" Height="12" Foreground="Red"/>
+                            </Button> 
                         </ToolBar>
                     </ToolBarTray>
                     <GroupBox Header="Список получателей">
