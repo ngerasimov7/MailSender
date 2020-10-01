@@ -13,6 +13,24 @@ namespace MailSender.ViewModels
     class MainWindowViewModel : ViewModel
     {
         private readonly IMailService _MailService;
+        private readonly IServerStorage _ServerStorage;
+        private readonly ISendersStorage _SendersStorage;
+        private readonly IRecipientsStorage _RecipientsStorage;
+        private readonly IMessagesStorage _MessagesStorage;
+        public MainWindowViewModel(
+        IMailService MailService,
+        IServerStorage ServerStorage, ISendersStorage SendersStorage,
+        IRecipientsStorage RecipientsStorage, IMessagesStorage MessagesStorage)
+        {
+            _MailService = MailService;
+            _ServerStorage = ServerStorage;
+            _SendersStorage = SendersStorage;
+            _RecipientsStorage = RecipientsStorage;
+            _MessagesStorage = MessagesStorage;
+        }
+
+
+        private readonly IMailService _MailService;
 
         public StatisticViewModel Statistic { get; } = new StatisticViewModel();
 
@@ -303,6 +321,10 @@ namespace MailSender.ViewModels
 
         public MainWindowViewModel(IMailService MailService)
         {
+            _ServerStorage.Load();
+            _RecipientsStorage.Load();
+            _ServerStorage.Load();
+            _MessagesStorage.Load();
             _MailService = MailService;
             Servers = new ObservableCollection<Server>(TestData.Servers);
             Senders = new ObservableCollection<Sender>(TestData.Senders);

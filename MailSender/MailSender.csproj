@@ -203,6 +203,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Interfaces\IStorage.cs" />
+    <Compile Include="Service\DataStorageInMemory.cs" />
+    <Compile Include="Service\DataStorageInXmlFile.cs" />
+    <Compile Include="Service\InMemoryDataStorage.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
@@ -262,6 +266,7 @@
       <Name>MailSender.lib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
