@@ -1,9 +1,7 @@
 ﻿using System;
 using MailSender.lib.Interfaces;
 using MailSender.lib.Service;
-using MailSender.Interfaces;
 using MailSender.ViewModels;
-using MailSender.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -29,21 +27,17 @@ namespace MailSender
 #else
             services.AddTransient<IMailService, SmtpMailService>();
 #endif
-            // Выбираем либо этот блок
-            var memory_store = new DataStorageInMemory();
-            services.AddSingleton<IServerStorage>(memory_store);
-            services.AddSingleton<ISendersStorage>(memory_store);
-            services.AddSingleton<IRecipientsStorage>(memory_store);
-            services.AddSingleton<IMessagesStorage>(memory_store);
-            
-            //либо этот. Один надо закомментировать, другой - раскомментировать
-            //const string data_file_name = "MailSenderStorage.xml";
-            //var file_storage = new DataStorageInXmlFile(data_file_name);
-            //services.AddSingleton<IServerStorage>(file_storage);
-            //services.AddSingleton<ISendersStorage>(file_storage);
-            //services.AddSingleton<IRecipientsStorage>(file_storage);
-            //services.AddSingleton<IMessagesStorage>(file_storage);
 
+            services.AddSingleton<IEncryptorService, Rfc2898Encryptor>();
+
+            //services.AddScoped<>()
+
+            //using (var scope = Services.CreateScope())
+            //{
+            //    var mail_service = scope.ServiceProvider.GetRequiredService<IMailService>();
+            //    var sender = mail_service.GetSender("smtp.mail.ru", 25, true, "Login", "Password");
+            //    sender.Send("sender@mail.ru", "recipient@gmail.com", "Title", "Body");
+            //}
         }
     }
 }
