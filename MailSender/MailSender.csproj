@@ -276,6 +276,11 @@
     <Compile Include="Data\Stores\InDB\RecipientsStoreInDB.cs" />
     <Compile Include="Data\Stores\InMemory\RecipientsStoreInMemory.cs" />
     <Compile Include="Infrastructure\ValidationRules\RegExValidation.cs" />
+    <Compile Include="Migrations\20201016105122_Initial.cs" />
+    <Compile Include="Migrations\20201016105122_Initial.designer.cs">
+      <DependentUpon>20201016105122_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\MailSenderDBModelSnapshot.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.Commands.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
